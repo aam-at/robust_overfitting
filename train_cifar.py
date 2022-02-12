@@ -143,7 +143,7 @@ def get_args():
     parser.add_argument('--fgsm-alpha', default=1.25, type=float)
     parser.add_argument('--norm', default='l_inf', type=str, choices=['l_inf', 'l_2'])
     parser.add_argument('--fgsm-init', default='random', choices=['zero', 'random', 'previous'])
-    parser.add_argument('--fname', default='cifar_model', type=str)
+    parser.add_argument('--fname', default='cifar10_model', type=str)
     parser.add_argument('--seed', default=0, type=int)
     parser.add_argument('--half', action='store_true')
     parser.add_argument('--width-factor', default=10, type=int)
@@ -445,6 +445,7 @@ def main():
                         'test_robust_loss':test_robust_loss/test_n,
                         'test_loss':test_loss/test_n,
                         'test_acc':test_acc/test_n,
+                        'epoch':epoch
                     }, os.path.join(args.fname, f'model_best.pth'))
                 best_test_robust_acc = test_robust_acc/test_n
         else:
