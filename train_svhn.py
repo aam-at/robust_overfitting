@@ -42,7 +42,7 @@ class NumpyDataset(torch.utils.data.Dataset):
         self.transform = transform
 
     def __getitem__(self, index):
-        x = Image.fromarray(self.x[index])
+        x = Image.fromarray(np.transpose(self.x[index], (1, 2, 0)))
         y = self.y[index]
         return self.transform(x), y
 
@@ -191,10 +191,10 @@ def main():
     if args.val:
         try:
             print("Loading validation split")
-            dataset = torch.load("cifar100_validation_split.pth")
+            dataset = torch.load("svhn_validation_split.pth")
         except:
             print("Couldn't find a dataset with a validation split, did you run "
-                  "generate_cifar100_validation.py?")
+                  "generate_svhn_validation.py?")
             return
         val_dataset = NumpyDataset(dataset['val']['data'], dataset['val']['labels'], test_transform)
         val_loader = torch.utils.data.DataLoader(
@@ -205,7 +205,7 @@ def main():
             num_workers=2,
         )
     else:
-        dataset = cifar100(args.data_dir)
+        dataset = svhn(args.data_dir)
     train_dataset = NumpyDataset(dataset['train']['data'], dataset['train']['labels'], train_transform)
     train_loader = torch.utils.data.DataLoader(
         dataset=train_dataset,
