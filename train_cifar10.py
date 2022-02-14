@@ -154,7 +154,7 @@ def get_args():
     parser.add_argument('--mixup-alpha', type=float)
     parser.add_argument('--eval', action='store_true')
     parser.add_argument('--val', action='store_true')
-    parser.add_argument('--chkpt-iters', default=10, type=int)
+    parser.add_argument('--chkpt-iters', default=1, type=int)
     return parser.parse_args()
 
 
@@ -185,6 +185,7 @@ def main():
         transforms.append(Cutout(args.cutout_len, args.cutout_len))
     if args.val:
         try:
+            print("Loading validation split")
             dataset = torch.load("cifar10_validation_split.pth")
         except:
             print("Couldn't find a dataset with a validation split, did you run "
@@ -208,7 +209,7 @@ def main():
     if args.model == 'PreActResNet18':
         model = PreActResNet18()
     elif args.model == 'WideResNet':
-        model = WideResNet(34, 10, widen_factor=args.width_factor, dropRate=0.0)
+        model = WideResNet(28, 10, widen_factor=args.width_factor, dropRate=0.0)
     else:
         raise ValueError("Unknown model")
 
