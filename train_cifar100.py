@@ -236,7 +236,7 @@ def main():
     if args.model == 'PreActResNet18':
         model = PreActResNet18(num_classes=100)
     elif args.model == 'WideResNet':
-        model = WideResNet(28, 10, widen_factor=args.width_factor, dropRate=0.0)
+        model = WideResNet(28, 100, widen_factor=args.width_factor, dropRate=0.0)
     else:
         raise ValueError("Unknown model")
 
