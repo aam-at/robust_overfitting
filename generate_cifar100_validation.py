@@ -7,7 +7,7 @@ np.random.seed(0)
 n = 1000
 
 
-def svhn(root):
+def cifar100(root):
     train_set = torchvision.datasets.CIFAR100(root=root, train=True, download=False)
     test_set = torchvision.datasets.CIFAR100(root=root, train=False, download=False)
     return {
@@ -16,7 +16,7 @@ def svhn(root):
     }
 
 
-dataset = svhn('../cifar100-data')
+dataset = cifar100('../cifar100-data')
 m = dataset['train']['data'].shape[0]
 P = np.random.permutation(m)
 
