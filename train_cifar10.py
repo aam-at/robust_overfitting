@@ -188,7 +188,7 @@ def main():
             dataset = torch.load("cifar10_validation_split.pth")
         except:
             print("Couldn't find a dataset with a validation split, did you run "
-                  "generate_validation.py?")
+                  "generate_cifar10_validation.py?")
             return
         val_set = list(zip(transpose(dataset['val']['data']/255.), dataset['val']['labels']))
         val_batches = Batches(val_set, args.batch_size, shuffle=False, num_workers=2)
