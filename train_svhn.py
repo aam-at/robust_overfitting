@@ -130,7 +130,7 @@ def get_args():
     parser.add_argument('--data-dir', default='../svhn-data', type=str)
     parser.add_argument('--epochs', default=200, type=int)
     parser.add_argument('--lr-schedule', default='piecewise', choices=['superconverge', 'piecewise', 'linear', 'piecewisesmoothed', 'piecewisezoom', 'onedrop', 'multipledecay', 'cosine'])
-    parser.add_argument('--lr-max', default=0.1, type=float)
+    parser.add_argument('--lr-max', default=0.01, type=float)
     parser.add_argument('--lr-one-drop', default=0.01, type=float)
     parser.add_argument('--lr-drop-epoch', default=100, type=int)
     parser.add_argument('--attack', default='pgd', type=str, choices=['pgd', 'fgsm', 'free', 'none'])
